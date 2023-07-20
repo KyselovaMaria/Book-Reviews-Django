@@ -1,0 +1,7 @@
+<form method="POST" action="{% url 'book_search' %}">
+  {% csrf_token %}
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" name="name_of_book" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-primary" type="submit">Search</button>
+  </div>
+</form>
