@@ -24,3 +24,14 @@ Each user can rate only one book.
 The main page of the site shows a list of all books.
 
 In addition, there should be a book filter by genre and a search by title or author.
+
+# How to start
+$ python manage.py makemigrations
+
+$ python manage.py migrate
+
+python manage.py createsuperuser
+(http://127.0.0.1:8008/admin/)
+
+python manage.py runserver 8008
+(http://127.0.0.1:8008/book/all_books)
