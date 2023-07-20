@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Book Site | Book Detail</title>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="background-color: #f5f5f5; padding: 20px; border: 1px solid #FFAB5B;">
+  <div class="row">
+    <div class="col-12 col-md-4">
+      <div class="text-center mt-3">
+        <div style="font-size: 24px; margin-bottom: 5px;">
+          Average Rating:
+          <span style="font-size: 24px;">{{ book.average_rating }}</span>
+        </div>
+        <div class="rating">
+          {% for _ in book.average_rating|default:""|floatformat %}
+            <i class="fas fa-star"></i>
+          {% empty %}
+            <i class="far fa-star"></i>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="d-flex justify-content-center mb-3">
+        <div id="imageContainer">
+          <img src="{{ book.cover_image.url }}" style="max-width: 100%;">
+        </div>
+      </div>
+      <div class="text-center">
+        <form method="POST" action="{% url 'rate_book' book.id %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Rate</button>
+          {% if request.user.is_authenticated %}
+            {% if favorite_book_exists %}
+              <a href="{% url 'remove_from_favorite' book_id=book.id %}" class="btn btn-danger">Remove from Favorites</a>
+            {% else %}
+              <a href="{% url 'add_to_favorite' book_id=book.id %}" class="btn btn-primary float-md-right">Add to Favorites</a>
+            {% endif %}
+          {% endif %}
+        </form>
+      </div>
+    </div>
+    <div class="col-12 col-md-8">
+      <div id="summaryContent" style="background-color: #f5f5f5; padding: 20px; border: 1px solid #FFAB5B;">
+        <h1 style="margin: 0;">{{ book.title }}</h1>
+        <h2 style="margin-top: 5px; margin-bottom: 0px;">by: <strong>{{ book.author }}</strong></h2>
+        <h3 style="margin-top: 0px; margin-bottom: 5px;">Book Summary:</h3>
+        <p style="margin-top: 5px; margin-bottom: 5px;">{{ book.summary }}</p>
+        <h3 style="margin-top: 0px; margin-bottom: 5px;">Author Summary:</h3>
+        <p style="margin-top: 0px; margin-bottom: 0px;">{{ book.author_summary }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <h4>Similar Books</h4>
+  </div>
+  <div class="row">
+    {% for similar_book in similar_books %}
+    <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+      <a href="{% url 'book_detail' similar_book.slug %}">
+        <div>
+          <div class="uk-card uk-card-default uk-card-body">
+            <img src="{{ similar_book.cover_image.url }}">
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

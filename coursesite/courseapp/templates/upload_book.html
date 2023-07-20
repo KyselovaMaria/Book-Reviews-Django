@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Book Site | Upload Book</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2>Upload Book</h2>
+  <form method="post" enctype="multipart/form-data" action="{% url 'upload_book' %}">
+    {% csrf_token %}
+    {% include 'upload_book_form.html' %}
+  </form>
+</div>
+{% endblock %}
