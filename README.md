@@ -3,6 +3,7 @@ Making a book review website using Django and MySql
 
 # Environment 
 PyCharm (takes care of creating specific directory structure and files required for a Django application, and providing the correct settings)
+
 XAMPP for easy MySQL connection 
 
 # Description
