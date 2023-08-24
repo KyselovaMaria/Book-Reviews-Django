@@ -35,3 +35,10 @@ python manage.py createsuperuser
 
 python manage.py runserver 8008
 (http://127.0.0.1:8008/book/all_books)
+
+# Examples
+![image](https://github.com/KyselovaMaria/Book-Reviews-Django/assets/88087036/cd2de9ec-58b8-4b70-95ff-9ee44c8c7894)
+![image](https://github.com/KyselovaMaria/Book-Reviews-Django/assets/88087036/3d9be479-fce1-4dec-849d-93454fff5260)
+![image](https://github.com/KyselovaMaria/Book-Reviews-Django/assets/88087036/642987b4-4f10-4835-9e94-cdf13d7bd5e5)
+![image](https://github.com/KyselovaMaria/Book-Reviews-Django/assets/88087036/c1ca6901-84f5-4d86-90fe-010a8b1accb2)
+
